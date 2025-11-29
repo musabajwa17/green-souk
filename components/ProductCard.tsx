@@ -5,13 +5,15 @@ interface ProductCardProps {
   name: string
   price: string
   image?: string
+  image1?: string
+  image2?: string
   href?: string
   onSale?: boolean
   originalPrice?: string
   showButtonsOnHover?: boolean
 }
 
-export default function ProductCard({ name, price, image, href = "/product", onSale = false, originalPrice, showButtonsOnHover = false }: ProductCardProps) {
+export default function ProductCard({ name, price, image, image1, image2, href = "/product", onSale = false, originalPrice, showButtonsOnHover = false }: ProductCardProps) {
   return (
     <div className="group relative bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
       <Link href={href} className="block">
@@ -20,7 +22,20 @@ export default function ProductCard({ name, price, image, href = "/product", onS
             <span className="absolute top-2 left-2 bg-gray-700 text-white text-xs font-bold px-2 py-1 rounded z-10">Sale</span>
           )}
           <div className="aspect-square bg-gray-100 rounded-lg mb-2 sm:mb-3 flex items-center justify-center overflow-hidden relative">
-            {image ? (
+            {image1 && image2 ? (
+              <>
+                <img 
+                  src={image1} 
+                  alt={name}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:opacity-0 transition-opacity duration-300"
+                />
+                <img 
+                  src={image2} 
+                  alt={name}
+                  className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+              </>
+            ) : image ? (
               <Image 
                 src={image} 
                 alt={name} 
@@ -44,17 +59,17 @@ export default function ProductCard({ name, price, image, href = "/product", onS
         </div>
       </Link>
       
-      {/* Hover Buttons - Only show if showButtonsOnHover is true */}
-      {showButtonsOnHover && (
-        <div className="px-0 pb-0 group-hover:px-2 sm:group-hover:px-3 lg:group-hover:px-4 group-hover:pb-2 sm:group-hover:pb-3 lg:group-hover:pb-4 max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-300 ease-in-out border-t-0 group-hover:border-t group-hover:border-gray-200">
-          <div className="flex flex-col gap-2 pt-0 group-hover:pt-2">
+      {/* Hover Buttons - Positioned inline, fixed height to prevent card shift */}
+      <div className="px-2 sm:px-3 lg:px-4">
+        <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-300 ease-in-out border-t-0 group-hover:border-t group-hover:border-gray-200">
+          <div className="flex flex-row gap-1.5 sm:gap-2 py-2 sm:py-2.5">
             <button 
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
                 // Handle quick shop - could open a modal or quick add to cart
               }}
-              className="w-full bg-white border-2 border-black text-black py-2 px-4 rounded text-xs sm:text-sm font-medium hover:bg-gray-50 transition-colors duration-200"
+              className="flex-1 bg-white border border-black text-black py-1.5 sm:py-2 px-2 rounded text-xs font-medium hover:bg-gray-50 transition-colors duration-200 whitespace-nowrap"
             >
               Quick shop
             </button>
@@ -64,13 +79,13 @@ export default function ProductCard({ name, price, image, href = "/product", onS
                 e.stopPropagation()
                 window.location.href = href
               }}
-              className="w-full bg-black text-white py-2 px-4 rounded text-xs sm:text-sm font-medium hover:bg-gray-800 transition-colors duration-200"
+              className="flex-1 bg-black text-white py-1.5 sm:py-2 px-2 rounded text-xs font-medium hover:bg-gray-800 transition-colors duration-200 whitespace-nowrap"
             >
               Choose options
             </button>
           </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }
