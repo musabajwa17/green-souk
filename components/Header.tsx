@@ -19,7 +19,7 @@ export default function Header() {
   return (
     <header className="bg-[#a1d132] sticky top-0 z-50">
       {/* Main header with logo, search, and contact - Green background */}
-        <div className="text-black py-3 sm:py-4">
+        <div className="text-black py-3 sm:py-4 md:mx-20">
           <div className="container mx-auto px-3 sm:px-4">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-3 lg:gap-6">
             {/* Logo with hamburger menu */}
