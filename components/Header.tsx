@@ -74,9 +74,9 @@ export default function Header() {
               <div className="flex items-center gap-2 sm:gap-3 text-black">
                 <MessageCircle className="w-4 h-4 sm:w-6 sm:h-6" />
                 <div className="flex flex-col sm:flex-col text-xs sm:text-sm">
-                  <span className="font-medium">+971 58 512 1105</span>
+                  <span className="text-xs">+971 58 512 1105</span>
                   {/* <span className="hidden sm:inline">•</span> */}
-                  <span className="font-medium">info@greensouq.ae</span>
+                  <span className="text-xs">info@greensouq.ae</span>
                 </div>
               </div>
 
@@ -89,16 +89,16 @@ export default function Header() {
                     </Link>
                     <button
                       onClick={() => signOut()}
-                      className="hover:opacity-80 text-white flex flex-row text-blakc gap-1 font-medium text-xs sm:text-sm hidden sm:inline"
+                      className="flex items-center gap-1 hover:opacity-80 text-black font-medium text-xs sm:text-sm"
                     >
-                      <span><LogIn width={20} height={20} className="text-black"/> </span>
+                    <User className="w-4 h-4 sm:w-5 sm:h-5 text-black" />
                     <span className="text-black"> Logout</span>
                     </button>
                   </>
                 ) : (
-                  <Link href="/login" className="flex items-center gap-1 hover:opacity-80 text-white font-medium text-xs sm:text-sm">
-                    <User className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span className="hidden sm:inline">Login</span>
+                  <Link href="/login" className="flex items-center gap-1 hover:opacity-80 text-black font-medium text-xs sm:text-sm">
+                    <User className="w-4 h-4 sm:w-5 sm:h-5 text-black" />
+                    <span className="hidden sm:inline text-black">Login</span>
                   </Link>
                 )}
                 <ShoppingCart className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer text-black hover:opacity-80" />
